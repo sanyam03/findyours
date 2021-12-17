@@ -23,7 +23,7 @@ MERN stack is the idea of using Javascript/Node for fullstack web development.
 
 ## clone or download
 ```terminal
-$ git clone https://github.com/amazingandyyy/mern.git
+$ git clone https://github.com/sanyam03/fingyours.git
 $ npm i
 ```
 
@@ -49,6 +49,9 @@ client/
 notice, you need client and server runs concurrently in different terminal session, in order to make them talk to each other
 
 ## Client-side usage(PORT: 3000)
+
+Note for windows: change line 26 in client/package.json to `"start": "set PORT=4000 &&  react-scripts start",`.
+
 ```terminal
 $ cd client   // go to client folder
 $ npm i       // npm install packages
@@ -116,14 +119,6 @@ redux-thunk: ^2.1.0 |
 
 # Screenshots of this project
 
-User visit public and Home page
-![User visit public and Home page](http://i.imgur.com/ORCGHHY.png)
-
-User can sign in or sign up
-![User can sign in or sign up](http://i.imgur.com/rrmbU5I.png)
-
-After signing in user can go to account route and make request to token-protected API endpoint
-![After signing in user can go to account route](http://i.imgur.com/FzLB51u.png)
 
 ## Standard
 
@@ -131,7 +126,7 @@ After signing in user can go to account route and make request to token-protecte
 
 ## BUGs or comments
 
-[Create new Issues](https://github.com/amazingandyyy/mern/issues) (preferred)
+[Create new Issues](https://github.com/amazingandyyy/mern/issues)
 
 Email Me: amazingandyyy@gmail.com (welcome, say hi)
 
