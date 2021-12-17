@@ -4,13 +4,14 @@ const express = require("express");
 const http = require("http");
 const app = express();
 const server = http.createServer(app);
+const {spawn} = require('child_process');
 
 //multer configurations
 var multer  = require('multer')
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, './uploads')
+    cb(null, './uploads/unknown')
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname)
@@ -26,7 +27,24 @@ app.use(express.static(__dirname + '/public'));
 app.use('/uploads', express.static('uploads'));
 
 
-
+app.get('/', (req, res) => {
+ 
+  var dataToSend;
+  // spawn new child process to call the python script
+  const python = spawn('python3', ['match_faces.py']);
+  // collect data from script
+  python.stdout.on('data', function (data) {
+   console.log('Pipe data from python script ...');
+   dataToSend = data.toString();
+  });
+  // in close event we are sure that stream from child process is closed
+  python.on('close', (code) => {
+  console.log(`child process close all stdio with code ${code}`);
+  // send data to browser
+  res.send(dataToSend)
+  });
+  
+ })
 app.post('/profile-upload-single', upload.single('profile-file'), function (req, res, next) {
   // req.file is the `profile-file` file
   // req.body will hold the text fields, if there were any
