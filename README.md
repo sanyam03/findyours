@@ -48,21 +48,21 @@ client/
 
 notice, you need client and server runs concurrently in different terminal session, in order to make them talk to each other
 
-## Client-side usage(PORT: 3000)
+## Client-side usage(PORT: 4000)
 
 Note for windows: change line 26 in client/package.json to `"start": "set PORT=4000 &&  react-scripts start",`.
 
 ```terminal
-$ cd client   // go to client folder
+$ cd findyours/client   // go to client folder
 $ npm i       // npm install packages
-$ npm run dev // run it locally
+$ npm start // run it locally
 
 // deployment for client app
 $ npm run build // this will compile the react code using webpack and generate a folder called docs in the root level
 $ npm run start // this will run the files in docs, this behavior is exactly the same how gh-pages will run your static site
 ```
 
-## Server-side usage(PORT: 8000)
+## Server-side usage(PORT: 5000)
 
 ### Prepare your secret
 
@@ -78,7 +78,7 @@ $ echo "JWT_SECRET=YOUR_JWT_SECRET" >> ./server/src/.env
 ### Start
 
 ```terminal
-$ cd server   // go to server folder
+$ cd findyours   // go to project folder
 $ npm i       // npm install packages
 $ npm run dev // run it locally
 $ npm run build // this will build the server code to es5 js codes and generate a dist file
@@ -128,10 +128,10 @@ redux-thunk: ^2.1.0 |
 
 [Create new Issues](https://github.com/amazingandyyy/mern/issues)
 
-Email Me: amazingandyyy@gmail.com (welcome, say hi)
+Email Me: sanyambharani01@gmail.com
 
-## Author
-[Amazingandyyy](https://amazingandyyy.com)
+## Authors
+Sanyam Bharani, Sumit, Sai
 
 ### License
 [MIT](https://github.com/amazingandyyy/mern/blob/master/LICENSE)
