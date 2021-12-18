@@ -103,16 +103,16 @@ const NavBar = ({ user, setUser }) => {
           />
           <div className={classes.title}>
             <img
-              src={process.env.PUBLIC_URL + "/odinbook-logo.png"}
+              src="../../images/header-1.png"
               alt=""
               height="40px"
               width="160px"
               onClick={handleLogoClick}
             />
           </div>
-          
-          { user && isOpen (<UploadFiles />) }
-          
+
+          <UploadFiles isOpen={isOpen} />
+
           {user && (
             <div>
               {/* <UserSearch /> */}
