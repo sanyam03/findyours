@@ -61,7 +61,7 @@ const NavBar = ({ user, setUser }) => {
 
   const handleLogoClick = () => {
     if (user) {
-      setOpen(!isOpen);
+      setOpen(true);
       // history.push("/");
     } else {
       history.push("/login");
@@ -110,6 +110,9 @@ const NavBar = ({ user, setUser }) => {
               onClick={handleLogoClick}
             />
           </div>
+          
+          { user && isOpen (<UploadFiles />) }
+          
           {user && (
             <div>
               {/* <UserSearch /> */}
