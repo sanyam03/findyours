@@ -1,11 +1,11 @@
 import face_recognition
 import glob
 # get all the missing cases submitted by user  ie in known files
-directory = "./uploads/known"
-missing_cases = glob.glob("./uploads/known/*")
+directory = "./resources/static/assets/uploads/"
+missing_cases = glob.glob(directory+"known/*")
 
 # get all the new cases submitted by user  ie in unknown files
-new_cases = glob.glob("./uploads/unknown/*")
+new_cases = glob.glob(directory+"unknown/*")
 
 known_cases = []
 unknown_cases = []
@@ -18,5 +18,14 @@ for case in new_cases:
     load_image = face_recognition.load_image_file(case)
     unknown_cases.append(face_recognition.face_encodings(load_image)[0])
 
-results = face_recognition.compare_faces(known_cases, unknown_cases[1])
-print(results)
+
+for match in unknown_cases:
+    results = face_recognition.compare_faces(known_cases,match)
+    known_index = [i for i, x in enumerate(results) if x]
+    
+    for idx in known_index:
+        print(missing_cases[idx].split(directory+"known/")[1])
+
+        
+
+

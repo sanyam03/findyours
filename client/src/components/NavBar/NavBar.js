@@ -13,6 +13,7 @@ import Menu from "@material-ui/core/Menu";
 import Hidden from "@material-ui/core/Hidden";
 
 import NavDrawer from "./NavDrawer";
+import UploadFiles from "../Dashboard/UploadFiles";
 // import UserSearch from "../UserSearch/UserSearch";
 
 const useStyles = makeStyles((theme) => ({
@@ -36,6 +37,7 @@ const NavBar = ({ user, setUser }) => {
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [isOpen, setOpen] = useState(false);
   const open = Boolean(anchorEl);
 
   const handleMenu = (event) => {
@@ -59,7 +61,8 @@ const NavBar = ({ user, setUser }) => {
 
   const handleLogoClick = () => {
     if (user) {
-      history.push("/");
+      setOpen(!isOpen);
+      // history.push("/");
     } else {
       history.push("/login");
     }
@@ -101,6 +104,7 @@ const NavBar = ({ user, setUser }) => {
           <div className={classes.title}>
             <img
               src={process.env.PUBLIC_URL + "/odinbook-logo.png"}
+              alt=""
               height="40px"
               width="160px"
               onClick={handleLogoClick}

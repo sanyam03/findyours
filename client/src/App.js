@@ -7,7 +7,7 @@ import NavBar from "./components/NavBar/NavBar";
 import LogIn from "./components/LogIn/LogIn";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Account from "./components/Account/Account";
-
+import MatchedFaces from "./components/MatchedFaces"
 import "./App.css";
 
 require("dotenv").config();
@@ -38,6 +38,9 @@ const App = () => {
         </Route>
         <Route path="/">
           <Dashboard user={user} setUser={setUser} />
+        </Route>
+        <Route path="/matched">
+          < MatchedFaces  user={user} setUser={setUser} /> 
         </Route>
       </Switch>
     </div>

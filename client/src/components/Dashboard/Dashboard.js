@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import Hidden from "@material-ui/core/Hidden";
-import NewCaseModal from "./NewCaseModal"
+
+import UploadFiles from "./UploadFiles"
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    backgroundColor: "rgb(23, 24, 25)",
+    
     minHeight: "100vh",
     marginTop: "10px",
   },
@@ -27,14 +25,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Dashboard = ({ user, setUser }) => {
-  const [posts, setPosts] = useState([]);
-  const [loadingPosts, setLoadingPosts] = useState(false);
-  const [userFriends, setUserFriends] = useState([]);
-  const [friendRequests, setFriendRequests] = useState([]);
-  const [skip, setSkip] = useState(0);
+
   const classes = useStyles();
   const history = useHistory();
-
+  
   if (!user) {
     history.push("/login");
   }
@@ -42,31 +36,9 @@ const Dashboard = ({ user, setUser }) => {
   return (
     <Container maxWidth="xl" className={classes.container}>
       <div>
-        <Grid container spacing={3} className={classes.grid}>
-          <Hidden mdDown>
-            <Grid item md={3}>
-              <Paper className={classes.paper}>
-                {/* <LinkList user={user} /> */}
-              </Paper>
-            </Grid>
-          </Hidden>
-          <Grid item xs={12} md={6}>
-            <Paper className={classes.paper}></Paper>
-          </Grid>
-          <Hidden mdDown>
-            <Grid item md={3}>
-              <Paper className={classes.paper}>
-                <NewCaseModal/>
-                {/* <FriendsList
-                  friends={userFriends}
-                  friendRequests={friendRequests}
-                  handleAcceptRequest={handleAcceptRequest}
-                  handleDeclineRequest={handleDeclineRequest}
-                /> */}
-              </Paper>
-            </Grid>
-          </Hidden>
-        </Grid>
+      <UploadFiles/>
+
+      
       </div>
     </Container>
   );
