@@ -16,6 +16,8 @@ import NavDrawer from "./NavDrawer";
 import UploadFiles from "../Dashboard/UploadFiles";
 // import UserSearch from "../UserSearch/UserSearch";
 
+import Logo from "../../images/header.png";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -48,6 +50,8 @@ const NavBar = ({ user, setUser }) => {
     setAnchorEl(null);
   };
 
+  // this is not working because UserAvatar needs refactoring
+  // I left comments there, please refer to that
   const toggleDrawer = () => {
     setDrawerOpen(!drawerOpen);
   };
@@ -78,6 +82,24 @@ const NavBar = ({ user, setUser }) => {
     handleClose();
   };
 
+  // Popups
+  React.useEffect(() => { // closes modal with ESC key
+    document.addEventListener('keydown', handleEscKey);
+
+    return () => document.removeEventListener('keydown', handleEscKey);
+  });
+  function handleEscKey(evt) {
+    console.log("closing modal with ESc key, getting event: ", evt.which)
+    if(evt.which === 27) setOpen(false);
+  }
+  function handlePopupClose(evt) { // closes popup
+    console.log("click to close modal, getting event: ", evt.target)
+    if(evt.target !== evt.currentTarget) return;
+
+    setOpen(false);
+  }
+
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -103,15 +125,12 @@ const NavBar = ({ user, setUser }) => {
           />
           <div className={classes.title}>
             <img
-              src="../../images/header-1.png"
-              alt=""
-              height="40px"
+              src={Logo} alt="header-logo"
               width="160px"
+              height="50px"
               onClick={handleLogoClick}
             />
           </div>
-
-          <UploadFiles isOpen={isOpen} />
 
           {user && (
             <div>
@@ -150,6 +169,7 @@ const NavBar = ({ user, setUser }) => {
           )}
         </Toolbar>
       </AppBar>
+      <UploadFiles isOpen={isOpen} onClose={handlePopupClose}/>
     </div>
   );
 };

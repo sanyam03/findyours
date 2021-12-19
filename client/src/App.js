@@ -14,6 +14,7 @@ require("dotenv").config();
 
 const App = () => {
   const [user, setUser] = useLocalStorage("user", "");
+
   // const history = useHistory();
 
   /* FOR PURPOSES OF PASSPORT TESTING
@@ -29,7 +30,7 @@ const App = () => {
         <Route path="/account">
           <Account user={user} setUser={setUser} />
         </Route>
-       
+
         {/* <Route path="/users/:userId">
           <Profile user={user} setUser={setUser} />
         </Route> */}
@@ -40,7 +41,7 @@ const App = () => {
           <Dashboard user={user} setUser={setUser} />
         </Route>
         <Route path="/matched">
-          < MatchedFaces  user={user} setUser={setUser} /> 
+          < MatchedFaces  user={user} setUser={setUser} />
         </Route>
       </Switch>
     </div>
