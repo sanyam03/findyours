@@ -107,16 +107,20 @@ remember to update the file of [client/webpack.prod.js](https://github.com/amazi
 # Dependencies(tech-stacks)
 Client-side | Server-side
 --- | ---
-axios: ^0.15.3 | bcrypt-nodejs: ^0.0.3
-babel-preset-stage-1: ^6.1.18|body-parser: ^1.15.2
-lodash: ^3.10.1 | cors: ^2.8.1
-react: ^16.2.0 | dotenv: ^2.0.0
-react-dom: ^16.2.0 | express: ^4.14.0
-react-redux: ^4.0.0 | jwt-simple: ^0.5.1
-react-router-dom: ^4.2.2 | mongoose: ^4.7.4
-redux: ^3.7.2 | morgan: ^1.7.0
-redux-thunk: ^2.1.0 |
-
+axios: ^0.21.0 | bycrpytjs: ^2.4.3
+css-normalize: 0.0.1 | bootstrap: ^5.1.3
+date-fns: ^2.16.1 | cors: ^2.8.5
+dotenv: ^8.2.0 | dotenv: ^10.0.0
+formik: ^2.2.5 | express: ^4.17.1
+jquery: ^3.6.0 | jquery: ^3.6.0
+react: ^16.0.0 | jsdom: ^19.0.0
+react-dom: ^17.0.1 | jsonwebtoken: ^8.5.1
+react-facebook-login: ^4.1.1 | mongoose: ^6.0.14
+react-router-dom: ^5.2.0 | multer: ^1.4.4
+react-scripts: 4.0.1 | react-validation: ^3.0.7
+typescript: ^4.5.4 | validator: ^13.7.0
+web-vitals: ^0.2.4 |
+yup: ^0.31.1 |
 # Screenshots of this project
 
 
