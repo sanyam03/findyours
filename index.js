@@ -1,4 +1,8 @@
 // requiring modules and setting up app and socket.io
+const { JSDOM } = require( "jsdom" );
+const { window } = new JSDOM( "" );
+require( "jquery" )( window );
+
 require("dotenv").config();
 const express = require("express");
 const http = require("http");
