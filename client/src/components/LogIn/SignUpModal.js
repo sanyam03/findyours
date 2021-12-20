@@ -40,17 +40,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SignUpModal = (props) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [city,setCity] = useState("")
   const classes = useStyles();
 
   const handleClick = () => {
-    props.handleSignUp(firstName, lastName, email, password,city);
-    setFirstName("");
-    setLastName("");
+    props.handleSignUp(name, email, password,city);
+    setName("");
     setEmail("");
     setPassword("");
     setCity("")
@@ -77,21 +75,14 @@ const SignUpModal = (props) => {
             <TextField
               required
               id="firstNameInput"
-              placeholder="First name"
+              placeholder="Name"
               variant="outlined"
-              className={`${classes.textField}`}
-              onChange={(e) => setFirstName(e.target.value)}
-              value={firstName}
+              style={{ width: "380px" }}
+              className={`${classes.textField} ${classes.longTextField}`}
+              onChange={(e) => setName(e.target.value)}
+              value={name}
             />
-            <TextField
-              required
-              id="lastNameInput"
-              placeholder="Last name"
-              variant="outlined"
-              className={`${classes.textField}`}
-              onChange={(e) => setLastName(e.target.value)}
-              value={lastName}
-            />
+           
             <TextField
               id="emailInput"
               placeholder="Email"

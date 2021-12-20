@@ -29,7 +29,9 @@ const App = () => {
         <Route path="/account">
           <Account user={user} setUser={setUser} />
         </Route>
-       
+        <Route path="/matched">
+          < MatchedFaces  user={user} setUser={setUser} /> 
+        </Route>
         {/* <Route path="/users/:userId">
           <Profile user={user} setUser={setUser} />
         </Route> */}
@@ -39,9 +41,7 @@ const App = () => {
         <Route path="/">
           <Dashboard user={user} setUser={setUser} />
         </Route>
-        <Route path="/matched">
-          < MatchedFaces  user={user} setUser={setUser} /> 
-        </Route>
+       
       </Switch>
     </div>
   );

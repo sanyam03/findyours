@@ -7,7 +7,7 @@ const UserAvatar = ({ user }) => {
 
   useEffect(() => {
     if (user) {
-      setInitials(`${user.first_name[0]} ${user.last_name[0]}`);
+      setInitials(`${user.name}`);
     }
   }, [user]);
 

@@ -63,16 +63,15 @@ const Login = ({ user, setUser }) => {
       });
   };
 
-  const handleSignUp = (firstName, lastName, email, password,city) => {
+  const handleSignUp = (name, email, password,city) => {
     axios
-      .post("/api/user/signup", { firstName, lastName, email, password,city })
+      .post("/api/user/signup", { name, email, password,city })
       .then((result) => {
         const user = {
           email: result.data.data.email,
-          first_name: result.data.data.first_name,
-          last_name: result.data.data.last_name,
+          name:result.data.data.name,
           token: result.data.data.token,
-          city:result.data.data.city
+          
         };
         axios.defaults.headers.common["Authorization"] =
           result.data.data.token;
