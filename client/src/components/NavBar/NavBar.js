@@ -13,10 +13,12 @@ import Menu from "@material-ui/core/Menu";
 import Hidden from "@material-ui/core/Hidden";
 
 import NavDrawer from "./NavDrawer";
-import UploadFiles from "../Dashboard/UploadFiles";
+import MissingCases from "../Dashboard/MissingCases";
+import ReportCases from "../Dashboard/ReportCases";
 // import UserSearch from "../UserSearch/UserSearch";
 
 import Logo from "../../images/header.png";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,6 +33,20 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-start",
     cursor: "pointer",
   },
+  navlinks: {
+    marginLeft: theme.spacing(10),
+    display: "flex",
+  },
+  link: {
+    textDecoration: "none",
+    color: "white",
+    fontSize: "20px",
+    marginLeft: theme.spacing(20),
+    "&:hover": {
+      color: "yellow",
+      borderBottom: "1px solid white",
+    },
+  },
 }));
 
 const NavBar = ({ user, setUser }) => {
@@ -39,9 +55,8 @@ const NavBar = ({ user, setUser }) => {
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [isOpen, setOpen] = useState(false);
   const open = Boolean(anchorEl);
-
+  
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -63,14 +78,7 @@ const NavBar = ({ user, setUser }) => {
     history.push("/login");
   };
 
-  const handleLogoClick = () => {
-    if (user) {
-      setOpen(true);
-      // history.push("/");
-    } else {
-      history.push("/login");
-    }
-  };
+
 
   const handleProfileClick = () => {
     history.push(`/users/${user.id}`);
@@ -81,25 +89,7 @@ const NavBar = ({ user, setUser }) => {
     history.push("/account");
     handleClose();
   };
-
-  // Popups
-  React.useEffect(() => { // closes modal with ESC key
-    document.addEventListener('keydown', handleEscKey);
-
-    return () => document.removeEventListener('keydown', handleEscKey);
-  });
-  function handleEscKey(evt) {
-    console.log("closing modal with ESc key, getting event: ", evt.which)
-    if(evt.which === 27) setOpen(false);
-  }
-  function handlePopupClose(evt) { // closes popup
-    console.log("click to close modal, getting event: ", evt.target)
-    if(evt.target !== evt.currentTarget) return;
-
-    setOpen(false);
-  }
-
-
+ 
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -123,15 +113,15 @@ const NavBar = ({ user, setUser }) => {
             toggleDrawer={toggleDrawer}
             handleLogOut={handleLogOut}
           />
+          
           <div className={classes.title}>
             <img
               src={Logo} alt="header-logo"
               width="160px"
               height="50px"
-              onClick={handleLogoClick}
             />
           </div>
-
+         
           {user && (
             <div>
               {/* <UserSearch /> */}
@@ -160,6 +150,7 @@ const NavBar = ({ user, setUser }) => {
                   open={open}
                   onClose={handleClose}
                 >
+                 
                   <MenuItem onClick={handleProfileClick}>Profile</MenuItem>
                   <MenuItem onClick={handleAccountClick}>Account</MenuItem>
                   <MenuItem onClick={handleLogOut}>Log out</MenuItem>
@@ -169,7 +160,7 @@ const NavBar = ({ user, setUser }) => {
           )}
         </Toolbar>
       </AppBar>
-      <UploadFiles isOpen={isOpen} onClose={handlePopupClose}/>
+  
     </div>
   );
 };
