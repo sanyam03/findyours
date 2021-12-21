@@ -63,12 +63,24 @@ const UploadFile = (props) => {
         </div>
       )}
 
-      <label className="btn btn-default">
-        <input type="file" onChange={selectFile} />
+      <label className="btn btn-default" style={{ padding: "10px" }}>
+        <input type="file" onChange={selectFile}
+          style={{ margin: "0 auto 5% 15%", color: "black", fontSize: "1em" }}
+        />
       </label>
-        
+
       <button
         className="btn btn-success"
+        style={{
+          width: "50%",
+          margin: "0 auto 5%",
+          padding: "10px",
+          backgroundColor: "#ed9d0a",
+          color: "black",
+          fontSize: "1em",
+          border: 0,
+          borderRadius: "4px"
+        }}
         disabled={!selectedFiles}
         onClick={upload}
       >
@@ -79,7 +91,7 @@ const UploadFile = (props) => {
         {message}
       </div>
 
-      
+
     </>
   );
 };

@@ -6,6 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
 import Container from "@material-ui/core/Container";
 
+import LoginPageImg from "../../images/you-matter.png";
 import axios from "../../utils/axios";
 
 import LogInForm from "./LogInForm";
@@ -40,9 +41,9 @@ const Login = ({ user, setUser }) => {
           email: result.data.data.email,
           name: result.data.data.name,
           token: result.data.data.token,
-         
+
         };
-        
+
         axios.defaults.headers.common["Authorization"] =
           result.data.data.token;
         setUser(user);
@@ -71,7 +72,7 @@ const Login = ({ user, setUser }) => {
           email: result.data.data.email,
           name:result.data.data.name,
           token: result.data.data.token,
-          
+
         };
         axios.defaults.headers.common["Authorization"] =
           result.data.data.token;
@@ -140,17 +141,22 @@ const Login = ({ user, setUser }) => {
       <div className={classes.root}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
+            <Typography
+              variant="h2"
+              style={{ textAlign: "left", fontWeight: "bold" }}
+            >
+              Hi, Welcome back!
+            </Typography>
             <div
               style={{
                 display: "flex",
-                justifyContent: "flex-start",
-                marginTop: "10%",
+                justifyContent: "flex-start"
+                // marginTop: "10%",
               }}
             >
-              <img
-                src={process.env.PUBLIC_URL + "/odinbook-logo-blue.png"}
-                height="50px"
-                width="200px"
+              <img alt="" src={process.env.PUBLIC_URL + LoginPageImg}
+                min-height="50px"
+                width="90%"
               />
             </div>
             <Typography

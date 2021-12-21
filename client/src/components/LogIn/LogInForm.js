@@ -1,10 +1,10 @@
-
 import React, { useState } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
+import { Typography } from "@material-ui/core";
 
 import SignUpModal from "./SignUpModal";
 import Facebook from "./Facebook";
@@ -65,6 +65,16 @@ const LogInForm = (props) => {
         handleSignUp={props.handleSignUp}
         signupErrors={props.signupErrors}
       />
+      <Typography
+        variant="h3"
+        style={{
+          textAlign: "left",
+          margin: "20px 0 16px 10px",
+          fontWeight: "bold"
+        }}
+      >
+        Log in
+      </Typography>
       <TextField
         className={classes.textField}
         id="email-input"
@@ -138,6 +148,7 @@ const LogInForm = (props) => {
           justifyContent: "center",
           width: "100%",
           marginTop: "8px",
+          marginBottom: "20px"
         }}
       >
         <Facebook handleFBLogin={props.handleFBLogin} />

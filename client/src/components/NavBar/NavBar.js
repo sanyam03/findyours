@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
@@ -56,7 +55,7 @@ const NavBar = ({ user, setUser }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const open = Boolean(anchorEl);
-  
+
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -78,8 +77,6 @@ const NavBar = ({ user, setUser }) => {
     history.push("/login");
   };
 
-
-
   const handleProfileClick = () => {
     history.push(`/users/${user.id}`);
     handleClose();
@@ -89,7 +86,7 @@ const NavBar = ({ user, setUser }) => {
     history.push("/account");
     handleClose();
   };
- 
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -113,7 +110,7 @@ const NavBar = ({ user, setUser }) => {
             toggleDrawer={toggleDrawer}
             handleLogOut={handleLogOut}
           />
-          
+
           <div className={classes.title}>
             <img
               src={Logo} alt="header-logo"
@@ -121,7 +118,7 @@ const NavBar = ({ user, setUser }) => {
               height="50px"
             />
           </div>
-         
+
           {user && (
             <div>
               {/* <UserSearch /> */}
@@ -150,7 +147,7 @@ const NavBar = ({ user, setUser }) => {
                   open={open}
                   onClose={handleClose}
                 >
-                 
+
                   <MenuItem onClick={handleProfileClick}>Profile</MenuItem>
                   <MenuItem onClick={handleAccountClick}>Account</MenuItem>
                   <MenuItem onClick={handleLogOut}>Log out</MenuItem>
@@ -160,7 +157,7 @@ const NavBar = ({ user, setUser }) => {
           )}
         </Toolbar>
       </AppBar>
-  
+
     </div>
   );
 };

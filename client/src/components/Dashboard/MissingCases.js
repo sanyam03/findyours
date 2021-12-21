@@ -9,7 +9,7 @@ import UploadFile from "./UploadFile";
 
 const MissingCases = (props) => {
   const [errors, setErrors] = useState([]);
-  
+
 
   //const [open,isOpen] = useState(props)
 
@@ -42,13 +42,7 @@ const MissingCases = (props) => {
   return (
     <>
       <Modal open={props.modalOpen} onClose={props.toggleModalOpen} >
-        {/* <button
-          type="button"
-          aria-label="close"
-          className="form__close"
-          onClick={props.onClose}
-        ></button> */}
-        <form action="#" noValidate className="form missing-cases">
+        <form action="#" className="form" noValidate>
           <div className="form__container">
             <h3 className="form__title">Search for the Missing Person</h3>
 
@@ -144,6 +138,8 @@ const MissingCases = (props) => {
               Submit
             </Button>
           </div>
+
+          <button type="button" aria-label="close" className="form__close" onClick={props.toggleModalOpen}></button>
         </form>
       </Modal>
     </>

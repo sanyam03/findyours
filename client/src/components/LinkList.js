@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 const LinkList = (props) => {
   const history = useHistory();
   const classes = useStyles();
-  
+
   const handleClick = (address) => {
     history.push(address);
   };
@@ -79,7 +79,6 @@ const LinkList = (props) => {
       </List>
       <MissingCases result = {props.result} setResult = {props.setResult} modalOpen={props.modalOpen} setModalOpen={props.setModalOpen} toggleModalOpen = {props.toggleModalOpen}/>
       <ReportCases rmodalOpen={props.rmodalOpen} setrModalOpen={props.setrModalOpen} togglerModalOpen = {props.togglerModalOpen}/>
-
     </div>
   );
 };

@@ -7,7 +7,7 @@ import Modal from "@material-ui/core/Modal";
 import './Cases.css';
 import UploadFile  from "./UploadFile";
 const ReportCases = (props) => {
-  
+
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = (event) => {
@@ -16,7 +16,7 @@ const ReportCases = (props) => {
       .post("/user/api/reportcase",)
       .then((result) => {
         console.log(result)
-        
+
 
       })
       .catch((err) => {
@@ -38,77 +38,72 @@ const ReportCases = (props) => {
   };
 
   return (
-   
     <div >
-       <Modal open={props.rmodalOpen} onClose={props.togglerModalOpen} >
-      <form
-        action="#"
-        noValidate
-        className="form missing-cases"
-      >
-        <div className="form__container">
-          <h3 className="form__title">Report Person</h3>
+      <Modal open={props.rmodalOpen} onClose={props.togglerModalOpen} >
+        <form
+          action="#" className="form" noValidate >
+          <div className="form__container" style={{ width: "500px" }}>
+            <h3 className="form__title">Report Person</h3>
 
-          <fieldset className="form__field">
-            <div className="form__field_content">
-              <label className="form__label">Your Name</label>
-              <input
-                id="username"
-                type="text"
-                name="username"
-                placeholder="Enter your Name"
-                className="form__input form__input_type_username"
-                required
-              />
-              <span id="username-error" className="form__error form__error_active"></span>
-            </div>
-           
-            <div className="form__field_content">
-              <label className="form__label">Your Address</label>
-              <input
-                id="age"
-                type="number"
-                name="age"
-                placeholder="Your Address"
-                className="form__input form__input_type_age"
-              />
-              <span id="age-error" className="form__error form__error_active"></span>
-            </div>
-            <div className="form__field_content">
-              <label className="form__label">Phone</label>
-              <input
-                id="phone"
-                type="number"
-                name="phone"
-                placeholder="Enter Phone number"
-                className="form__input form__input_type_phone"
-                required
-              />
-              <span id="phone-error" className="form__error form__error_active"></span>
-            </div>
-           
-          </fieldset>
+            <fieldset className="form__field">
+              <div className="form__field_content">
+                <label className="form__label">Your Name</label>
+                <input
+                  id="username"
+                  type="text"
+                  name="username"
+                  placeholder="Enter your Name"
+                  className="form__input form__input_type_username"
+                  required
+                />
+                <span id="username-error" className="form__error form__error_active"></span>
+              </div>
 
-          <UploadFile/>
-          <Button
-            variant="contained"
-            style={{
-              backgroundColor: "rgb(72,182,54)",
-              width: "50%",
-              color: "white",
-              margin: "0 auto",
-            }}
-          onClick={handleSubmit}
-          >
-            Submit
-          </Button>
-        </div>
+              <div className="form__field_content">
+                <label className="form__label">Your Address</label>
+                <input
+                  id="age"
+                  type="number"
+                  name="age"
+                  placeholder="Your Address"
+                  className="form__input form__input_type_age"
+                />
+                <span id="age-error" className="form__error form__error_active"></span>
+              </div>
+              <div className="form__field_content">
+                <label className="form__label">Phone</label>
+                <input
+                  id="phone"
+                  type="number"
+                  name="phone"
+                  placeholder="Enter Phone number"
+                  className="form__input form__input_type_phone"
+                  required
+                />
+                <span id="phone-error" className="form__error form__error_active"></span>
+              </div>
 
-     
-      </form>
-   
-    </Modal>
-     </div>
+            </fieldset>
+
+            <UploadFile/>
+            <Button
+              variant="contained"
+              style={{
+                backgroundColor: "rgb(72,182,54)",
+                width: "50%",
+                color: "white",
+                margin: "0 auto",
+              }}
+              onClick={handleSubmit}
+            >
+              Submit
+            </Button>
+          </div>
+
+          <button type="button" aria-label="close" className="form__close" onClick={props.togglerModalOpen}></button>
+        </form>
+      </Modal>
+    </div>
   );
 };
 
