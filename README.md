@@ -47,10 +47,11 @@ client/
 - [npm](https://nodejs.org/en/download/package-manager/)
 
 notice, you need client and server runs concurrently in different terminal session, in order to make them talk to each other
+also, you need to create a .env file similar to the one shown in env.example.
 
-## Client-side usage(PORT: 4000)
+## Client-side usage(PORT: 3030)
 
-Note for windows: change line 26 in client/package.json to `"start": "set PORT=4000 &&  react-scripts start",`.
+Note for windows: change line 30 in client/package.json to `"start": "set PORT=3030 &&  react-scripts start",`.
 
 ```terminal
 $ cd findyours/client   // go to client folder
@@ -84,26 +85,6 @@ $ npm run dev // run it locally
 $ npm run build // this will build the server code to es5 js codes and generate a dist file
 ```
 
-## Deploy Server to [Heroku](https://dashboard.heroku.com/)
-```terminal
-$ npm i -g heroku
-$ heroku login
-...
-$ heroku create
-$ npm run heroku:add <your-super-amazing-heroku-app>
-// remember to run this command in the root level, not the server level, so if you follow the documentation along, you may need to do `cd ..`
-$ pwd
-/Users/<your-name>/mern
-$ npm run deploy:heroku
-```
-
-### After creating heroku
-
-remember to update the file of [client/webpack.prod.js](https://github.com/amazingandyyy/mern/blob/master/client/webpack.prod.js)
-```javascript
- 'API_URI': JSON.stringify('https://your-super-amazing-heroku-app.herokuapp.com')
-```
-
 # Dependencies(tech-stacks)
 Client-side | Server-side
 --- | ---
@@ -121,8 +102,6 @@ react-scripts: 4.0.1 | react-validation: ^3.0.7
 typescript: ^4.5.4 | validator: ^13.7.0
 web-vitals: ^0.2.4 |
 yup: ^0.31.1 |
-# Screenshots of this project
-
 
 ## Standard
 
@@ -130,12 +109,7 @@ yup: ^0.31.1 |
 
 ## BUGs or comments
 
-[Create new Issues](https://github.com/amazingandyyy/mern/issues)
-
 Email Me: sanyambharani01@gmail.com
 
 ## Authors
-Sanyam Bharani, Sumit, Sai
-
-### License
-[MIT](https://github.com/amazingandyyy/mern/blob/master/LICENSE)
+Sanyam Bharani, Sumeet, Sai
