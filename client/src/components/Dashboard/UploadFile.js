@@ -11,7 +11,7 @@ const UploadFile = (props) => {
   const [fileInfos, setFileInfos] = useState([]);
   const [errors, setErrors] = useState([]);
   const history = useHistory();
-
+  console.log(props.known )
   useEffect(() => {
     UploadService.getFiles().then((response) => {
       setFileInfos(response.data);
@@ -27,7 +27,7 @@ const UploadFile = (props) => {
     setProgress(0);
     setCurrentFile(currentFile);
 
-    UploadService.upload(currentFile, (event) => {
+    UploadService.upload(currentFile,props.known, (event) => {
       setProgress(Math.round((100 * event.loaded) / event.total));
     })
       .then((response) => {
@@ -63,12 +63,24 @@ const UploadFile = (props) => {
         </div>
       )}
 
-      <label className="btn btn-default">
-        <input type="file" onChange={selectFile} />
+      <label className="btn btn-default" style={{ padding: "10px" }}>
+        <input type="file" onChange={selectFile}
+          style={{ margin: "0 auto 5% 15%", color: "black", fontSize: "1em" }}
+        />
       </label>
-        
+
       <button
         className="btn btn-success"
+        style={{
+          width: "50%",
+          margin: "0 auto 5%",
+          padding: "10px",
+          backgroundColor: "#ed9d0a",
+          color: "black",
+          fontSize: "1em",
+          border: 0,
+          borderRadius: "4px"
+        }}
         disabled={!selectedFiles}
         onClick={upload}
       >
@@ -79,7 +91,7 @@ const UploadFile = (props) => {
         {message}
       </div>
 
-      
+
     </>
   );
 };

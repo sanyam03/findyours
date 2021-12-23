@@ -1,5 +1,5 @@
 // Requiring functions from controller
-const { signup, login,upload,getListFiles,download, matchface } = require("../controllers/userController");
+const { signup, login,upload,getListFiles,download, matchFace } = require("../controllers/userController");
 const router = require("express").Router();
 
 // SignUp
@@ -17,6 +17,7 @@ router.get("/files",  getListFiles);
 // download any file uploaded by user
 router.get("/files/:name",download);
 
-router.get("/matchface",matchface)
+router.get("/matchface",matchFace)
+
 
 module.exports = router;

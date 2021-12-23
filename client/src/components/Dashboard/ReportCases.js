@@ -7,13 +7,15 @@ import Modal from "@material-ui/core/Modal";
 import './Cases.css';
 import UploadFile  from "./UploadFile";
 const ReportCases = (props) => {
-  
   const [errors, setErrors] = useState([]);
-
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
+  const [imageurl,setImageUrl] = useState("");
   const handleSubmit = (event) => {
 
     axios
-      .post("/user/api/reportcase",)
+      .post("/user/api/reportcase",{name,address,phone,imageurl})
       .then((result) => {
         console.log(result)
         
@@ -54,11 +56,12 @@ const ReportCases = (props) => {
               <label className="form__label">Your Name</label>
               <input
                 id="username"
+                value={name}
                 type="text"
                 name="username"
                 placeholder="Enter your Name"
                 className="form__input form__input_type_username"
-                required
+                required   onChange={(e) => setName(e.target.value)}
               />
               <span id="username-error" className="form__error form__error_active"></span>
             </div>
@@ -66,11 +69,12 @@ const ReportCases = (props) => {
             <div className="form__field_content">
               <label className="form__label">Your Address</label>
               <input
-                id="age"
-                type="number"
-                name="age"
+                id="address"
+                type="text"
+                name="address"
                 placeholder="Your Address"
-                className="form__input form__input_type_age"
+                value = {address}
+                className="form__input form__input_type_age" onChange={(e) => setAddress(e.target.value)}
               />
               <span id="age-error" className="form__error form__error_active"></span>
             </div>
@@ -80,8 +84,9 @@ const ReportCases = (props) => {
                 id="phone"
                 type="number"
                 name="phone"
+                value = {phone}
                 placeholder="Enter Phone number"
-                className="form__input form__input_type_phone"
+                className="form__input form__input_type_phone" onChange={(e) => setPhone(e.target.value)}
                 required
               />
               <span id="phone-error" className="form__error form__error_active"></span>
@@ -89,7 +94,7 @@ const ReportCases = (props) => {
            
           </fieldset>
 
-          <UploadFile/>
+          <UploadFile imageurl ={imageurl} known={1} user = {props.user} setImageUrl = {setImageUrl}/>
           <Button
             variant="contained"
             style={{

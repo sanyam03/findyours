@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { useHistory } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -24,11 +24,10 @@ const useStyles = makeStyles((theme) => ({
 const LinkList = (props) => {
   const history = useHistory();
   const classes = useStyles();
-  
+
   const handleClick = (address) => {
     history.push(address);
   };
-  console.log(props)
   return (
     <div className={classes.root}>
       <List component="nav" aria-label="main nav list">
@@ -62,7 +61,7 @@ const LinkList = (props) => {
             <GroupIcon />
           </ListItemIcon>
           <ListItemText
-            primary="Friends"
+            primary="Show Submissions"
             onClick={() => handleClick(`/matched`)}
           />
         </ListItem>
@@ -77,8 +76,8 @@ const LinkList = (props) => {
           />
         </ListItem>
       </List>
-      <MissingCases result = {props.result} setResult = {props.setResult} modalOpen={props.modalOpen} setModalOpen={props.setModalOpen} toggleModalOpen = {props.toggleModalOpen}/>
-      <ReportCases rmodalOpen={props.rmodalOpen} setrModalOpen={props.setrModalOpen} togglerModalOpen = {props.togglerModalOpen}/>
+      <MissingCases user = {props.user}  result = {props.result} setResult = {props.setResult} modalOpen={props.modalOpen} setModalOpen={props.setModalOpen} toggleModalOpen = {props.toggleModalOpen}/>
+      <ReportCases user = {props.user}  rmodalOpen={props.rmodalOpen} setrModalOpen={props.setrModalOpen} togglerModalOpen = {props.togglerModalOpen}/>
 
     </div>
   );

@@ -2,10 +2,9 @@ const User = require("../model/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const uploadFile = require("../middleware/upload");
-const fs = require('fs');
+const fs = require("fs");
 const baseUrl = "http://localhost:5000/files/";
-const {spawn} = require('child_process');
-
+const { spawn } = require("child_process");
 // SIGNING UP USER
 const signup = async (req, res) => {
   const { email, password } = req.body;
@@ -134,14 +133,13 @@ const login = async (req, res) => {
 //Uploading file by user
 
 const upload = async (req, res) => {
-
   try {
     await uploadFile(req, res);
     if (req.file == undefined) {
       return res.status(400).send({ message: "Please upload a file!" });
     }
-    if(req.fileValidationError){
-      return res.status(400).send({message:"Invalid file type"})
+    if (req.fileValidationError) {
+      return res.status(400).send({ message: "Invalid file type" });
     }
     res.status(200).send({
       message: "Uploaded the file successfully: " + req.file.originalname,
@@ -195,26 +193,31 @@ const download = (req, res) => {
   });
 };
 
-const matchface = (req,res)=>{
-  var dataToSend;
+const matchFace = (req, res) => {
+  let dataToSend;
   // spawn new child process to call the python script
-  const python = spawn('python3', ['match_faces.py']);
+  const python = spawn("python3", ["match_faces.py"]);
   // collect data from script
-  python.stdout.on('data', function (data) {
-   console.log('Pipe data from python script ...');
-   dataToSend = data.toString();
+  python.stdout.on("data", function (data) {
+    console.log("Pipe data from python script ...");
+    dataToSend = data.toString().replace(/['"]+/g, '');
+
   });
   // in close event we are sure that stream from child process is closed
-  python.on('close', (code) => {
-  console.log(`child process close all stdio with code ${code}`);
-  // send data to browser
-  // JSON.parse(dataToSend)
-
-  console.log(typeof dataToSend)
-  res.send(dataToSend)
+  python.on("close", async (code) => {
+    console.log(`child process close all stdio with code ${code}`);
+    // send data to browser
+    console.log(dataToSend)
+    console.log("concatenated string")
+    let data = [dataToSend.substr(1,12)]
+    console.log(data)
+    const user = await User.findOne({reportUrl:data})
+      console.log(user)
+    res.status(200).send(user);
   });
-  
-}
+};
+
+
 
 module.exports = {
   signup,
@@ -222,5 +225,6 @@ module.exports = {
   upload,
   getListFiles,
   download,
-  matchface
+  matchFace,
+  
 };

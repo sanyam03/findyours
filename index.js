@@ -1,23 +1,24 @@
 // requiring modules and setting up app and socket.io
-const { JSDOM } = require( "jsdom" );
-const { window } = new JSDOM( "" );
-require( "jquery" )( window );
+const { JSDOM } = require("jsdom");
+const { window } = new JSDOM("");
+require("jquery")(window);
 
 require("dotenv").config();
 const express = require("express");
 const http = require("http");
 const app = express();
 const server = http.createServer(app);
+const socket = require("socket.io");
+const io = socket(server, {
+  cors: "*",
+});
 global.__basedir = __dirname;
-
 
 const cors = require("cors");
 
 // Requiring mongoose
 const mongoose = require("mongoose");
-app.use(express.static(__dirname + '/public'));
-
-
+app.use(express.static(__dirname + "/public"));
 
 app.use(
   express.urlencoded({
@@ -42,14 +43,22 @@ mongoose
   })
   .catch((err) => console.log(err));
 
-
-
-
-
+app.get("/", (req, res) => {
+  res.send("<h1>Hey Socket.io</h1>");
+});
 // Requiring routers from routers folder
 const userRouter = require("./router/userRouter");
 // using the routers
 app.use("/api/user", userRouter);
+io.on("connection", (socket) => {
+  console.log("a user connected");
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+  });
+  socket.on('my message', (msg) => {
+    console.log('message: ' + msg);
+  });
+});
 
 // For production side
 if (process.env.NODE_ENV == "production") {
