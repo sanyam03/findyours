@@ -1,4 +1,4 @@
-import React from "react";
+import React,{  useEffect} from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 
 import useLocalStorage from "./hooks/useLocalStorage";
@@ -8,12 +8,15 @@ import LogIn from "./components/LogIn/LogIn";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Account from "./components/Account/Account";
 import MatchedFaces from "./components/MatchedFaces"
+import useToken from './customHooks/useToken'
+
 import "./App.css";
 
-require("dotenv").config();
 
+export const TokenContext = React.createContext()
 const App = () => {
   const [user, setUser] = useLocalStorage("user", "");
+  const {addToken, token, removeToken} = useToken()
 
   // const history = useHistory();
 
@@ -27,6 +30,7 @@ const App = () => {
     <div className="App">
       <NavBar user={user} setUser={setUser} />
       <Switch>
+      <TokenContext.Provider value={{addToken,token,removeToken}}>
         <Route path="/account">
           <Account user={user} setUser={setUser} />
         </Route>
@@ -42,7 +46,8 @@ const App = () => {
         <Route path="/">
           <Dashboard user={user} setUser={setUser} />
         </Route>
-       
+        </TokenContext.Provider>
+
       </Switch>
     </div>
   );

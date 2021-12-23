@@ -5,7 +5,6 @@ const upload = (file, folder, onUploadProgress) => {
   formData.append("folder", folder);
   formData.append("file", file);
 
-  console.log(file);
   return http.post("/api/user/upload", formData, {
     headers: {
       "Content-Type": "multipart/form-data",

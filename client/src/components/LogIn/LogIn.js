@@ -35,7 +35,6 @@ const Login = ({ user, setUser }) => {
     axios
       .post("/api/user/login", { email, password })
       .then((result) => {
-        console.log(result)
         const user = {
           email: result.data.data.email,
           name: result.data.data.name,

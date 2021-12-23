@@ -9,15 +9,14 @@ import UploadFile from "./UploadFile";
 
 const MissingCases = (props) => {
   const [errors, setErrors] = useState([]);
-  
 
   //const [open,isOpen] = useState(props)
-
 
   const handleSubmit = (event) => {
     axios
     .get("/api/user/matchface",)
     .then((data) => {
+      console.log(data)
       props.setResult(data.data);
       props.setModalOpen(!props.modalOpen)
 
@@ -129,7 +128,7 @@ const MissingCases = (props) => {
                 ></span>
               </div>
             </fieldset>
-            <UploadFile />
+            <UploadFile  known = {0}/>
 
             <Button
               variant="contained"
