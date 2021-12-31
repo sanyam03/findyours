@@ -149,3 +149,4 @@ const SignUpModal = (props) => {
 };
 
 export default SignUpModal;
+
