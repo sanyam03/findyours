@@ -20,10 +20,14 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    reportUrl: [
+      {
+        type: String,
+      },
+    ],
     token: {
       type: String,
     },
-    
   },
   { timestamps: true }
 );

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState ,useContext, useEffect} from "react";
 import { useHistory } from "react-router-dom";
 import LinkList from "../LinkList";
 import Hidden from "@material-ui/core/Hidden";
 import Paper from "@material-ui/core/Paper";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -11,7 +12,7 @@ import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    minHeight: "100vh",
+    minHeight: "103vh",
     marginTop: "10px",
   },
   grid: {
@@ -33,6 +34,20 @@ const Dashboard = ({ user, setUser }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [rmodalOpen,setrModalOpen] = useState(false);
   const [result,setResult] = useState("");
+
+
+
+
+   //fetching markers
+  //only FRIENDS' markers (and own markers)
+
+  //when user clicks on an existing marker
+  const [currentMarker, setCurrentMarker] = useState({}) 
+
+  //when user clicks on map to add a new marker
+  const [addLat, setAddLat] = useState(null)
+  const [addLng, setAddLng] = useState(null)
+
   if (!user) {
     history.push("/login");
   }
@@ -59,6 +74,10 @@ const Dashboard = ({ user, setUser }) => {
             <Paper className={classes.paper}>
               {/* <NewPostForm user={user} handlePostSubmit={handlePostSubmit} /> */}
             </Paper>
+            <ToastContainer  position = "top-center" autoClose = {3000} hideProgressBar newestOnTop={false} rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
+    <article className="flex-grow md:flex">
+         {/* <Sidebar refreshMarkers = {refreshMarkers} setRefreshMarkers = {setRefreshMarkers}/> */}
+    </article>
             {/* <PostContainer
               user={user}
               posts={posts}
@@ -71,7 +90,7 @@ const Dashboard = ({ user, setUser }) => {
       </Grid>
       <Hidden mdDown>
             <Grid item md={3}>
-              <Paper className={classes.paper}>
+              <Paper >
                 {result}
                 {/* <FriendsList
                   friends={userFriends}
@@ -83,7 +102,7 @@ const Dashboard = ({ user, setUser }) => {
             </Grid>
           </Hidden>
         </Grid>
-
+    
       </div>
     </Container>
   );
